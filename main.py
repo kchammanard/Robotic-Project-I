@@ -1,3 +1,5 @@
+#uwu uwu uwu
+ 
 #################### IMPORT LIBRARIES ####################
 import cv2 
 import mediapipe as mp
