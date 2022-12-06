@@ -1,7 +1,5 @@
-####TODO####
-#cant hole finger lonh
-#game rules
 
+ 
 #################### IMPORT LIBRARIES ####################
 import cv2 
 import mediapipe as mp
