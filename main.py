@@ -15,8 +15,9 @@ mpHands = mp.solutions.hands
 hands = mpHands.Hands(max_num_hands=1,min_detection_confidence = 0.8,min_tracking_confidence = 0.8) 
 mp_drawing = mp.solutions.drawing_utils #used for visualising our drawings
 
-serialcomm = serial.Serial('COM3', 9600)
+serialcomm = serial.Serial('COM5', 9600)
 serialcomm.timeout = 1
+serialcomm.write("start".encode())
 
 #################### COUNT PLAYERS ####################
 wCam, hCam = 640, 480
@@ -113,7 +114,8 @@ def startingCards(i, j):
     serialcomm.write("next turn".encode())
     time.sleep(2)
     print(serialcomm.readline().decode('ascii'))
-    
+
+#serialcomm.write("count".encode())
 count = count_players()
 cap.release()
 cv2.destroyAllWindows()
@@ -135,12 +137,10 @@ cards_left = 52
 
 players = [str(n) for n in range(1, int(num_players) + 1)]
 
-for i in range(int(num_players)+1):
-    j = i % int(num_players)
-    print(i, j, "Starting")
-    startingCards(i, j)
-# #     players.append(f"Player {i+1}")
-# print(players)
+# for i in range(int(num_players)+1):
+#     j = i % int(num_players)
+#     print(i, j, "Starting")
+#     startingCards(i, j)
 
 iterator = 0
 
