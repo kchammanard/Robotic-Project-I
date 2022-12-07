@@ -14,7 +14,7 @@ const int stepsPerRevolution = 200; //200
 
 int rev = 50; //normally 200
 int rev2 = 200 * 50;
-
+String currentplayer;
 void setup() {
   // Declare pins as Outputs
   pinMode(stepPin, OUTPUT);
@@ -71,7 +71,9 @@ void loop() {
     if (a == "shoot card") {
 
       writeString("shooting your ass");
-
+      lcd.clear();
+      lcd.print("Shooting card...");
+      delay(1000);
       for (int x = 0; x < rev2; x++) {
         digitalWrite(forwardPin, HIGH);
         digitalWrite(backwardPin, LOW);
@@ -79,6 +81,11 @@ void loop() {
         digitalWrite(forwardPin, LOW);
       }
       Serial.write("shooting card");
+      lcd.clear();
+      lcd.print("Current player:");
+      lcd.setCursor(0, 1);
+      lcd.print("Player ");
+      lcd.print(currentplayer);
     }
 
     else if (a == "next turn") {
@@ -87,6 +94,7 @@ void loop() {
       lcd.setCursor(0, 1);
       lcd.print("Player ");
       lcd.print(b);
+      currentplayer = b;
       if (b[0] == '1') {
         for (int x = 0; x < (200 - rev) * 8; x++) {
           digitalWrite(dirPin, HIGH);
